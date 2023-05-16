@@ -10,6 +10,7 @@ function App() {
   const [isLoading, setIsLoading] = React.useState(false);
   const [isLoggedIn, setIsLoggedIn] = React.useState(false);
   const [errorMessage, setErrorMessage] = React.useState('');
+  const [isUserOnline, setIsUserOnline] = React.useState(true);
 
   // new state variables for chat box
   const [toId, setToId] = React.useState('');
@@ -112,10 +113,32 @@ function App() {
     setIsLoading(false);
   };
 
+  React.useEffect(() => {
+    const checkUserOnlineStatus = async () => {
+      try {
+        const response = await fetch('/statusCheck');
+        const data = await response.json();
+        setIsUserOnline(data.status);
+      } catch (error) {
+        setIsUserOnline(false);
+      }
+    };
+  
+    checkUserOnlineStatus();
+    const intervalId = setInterval(checkUserOnlineStatus, 5000);
+  
+    return () => {
+      clearInterval(intervalId);
+    };
+  }, []);
+
   if (isLoggedIn) {
     return (
       <div className="App">
         <h1>Welcome {userName}</h1>
+        <div className={`status-indicator ${isUserOnline ? 'online' : 'offline'}`}>
+          {isUserOnline ? 'Online' : 'Offline'}
+        </div>
         <div>
           To: <input value={toId} onChange={e => setToId(e.target.value)} />
         </div>
