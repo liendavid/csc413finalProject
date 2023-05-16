@@ -42,6 +42,10 @@ public class LoginHandler implements BaseHandler{
       res.setStatus("200 OK");
       //res.setHeaders(Map.of("Set-Cookie", "auth=" + hash));
       res.setHeader("Set-Cookie", "auth=" + hash);
+      
+      res.setBody(hash);
+      
+      res.setHeader("Access-Control-Expose-Headers", "*");
     }
     return res;
   }

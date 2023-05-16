@@ -65,7 +65,7 @@ public class MessageDto extends BaseDto{
         .append("conversationId", conversationId);
   }
 
-  public static MessageDto fromDocument(Document document) {
+   public static MessageDto fromDocument(Document document) {
     var message = new MessageDto();
     message.setMessage(document.getString("message"));
     message.setFromId(document.getString("fromId"));

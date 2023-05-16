@@ -16,9 +16,36 @@ public class HandlerFactory {
         return new GetConversationHandler();
       case "/createMessage":
         return new CreateMessageHandler();
+        
+      // Friends Feature Start
+      
+      case "/getFriends":
+        return new GetFriendsHandler();
+      case "/unfriend":
+        return null;
+        
+      case "/sendFriendRequest":
+        return new SendFriendRequestHandler();
+      case "/cancelFriendRequest":
+        return new CancelFriendRequestHandler();
+
+      case "/acceptFriendRequest":
+        return new AcceptFriendRequestHandler();
+      case "/denyFriendRequest":
+        return new DenyFriendRequestHandler();
+        
+      case "/getIncomingFriendRequests":
+        return new GetIncomingFriendRequests();
+      case "/getOutgoingFriendRequests":
+        return new GetOutgoingFriendRequests();
+        
+      case "/getUsernameByHash":
+        return new GetUsernameByHash();
+        
+      // Friends Feature End
+        
       default:
         return new FallbackHandler();
     }
   }
-
 }
