@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Lilita+One&display=swap');
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -11,3 +13,422 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.App  {
+  display: flex;
+  flex-direction: column;
+
+  justify-content: flex-start;
+  align-items: center;
+}
+
+
+*  {
+  box-sizing: border-box;
+}
+
+:root  {
+  --black-font-color: #23263e;
+  --body-background-color: #1d0844;
+  --bright-body-background: #4d15b3;
+
+  --white-font-color: #f2f2f2;
+
+  --cyan-color:  #60ffc9;
+  --yellow-color: #fad717;
+}
+
+
+body  {
+  background-color: var(--body-background-color);
+
+  color:  var(--white-font-color);
+
+}
+
+.app-button  {
+  background-color: var(--cyan-color);
+
+  border-radius: 10px;
+  text-decoration: none;
+  border: 2px solid transparent;
+
+  padding: 5px;
+
+  cursor: pointer;
+  color:  var(--black-font-color);
+
+  font-weight: bold;
+}
+
+.app-button:hover  {
+  cursor: pointer;
+  opacity: 70%;
+}
+
+.error-message  {
+  color: red;
+  font-weight: bold;
+}
+
+/* Login/Register form */
+
+.auth-form-wrapper  {
+  display: flex;
+  flex-direction: column;
+
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.auth-form-buttons-wrapper  {
+  display: flex;
+  justify-content: space-between;
+
+}
+
+.auth-form-buttons-wrapper button  {
+  margin: 1em;
+}
+
+input, textarea  {
+  border-radius: 10px;
+  text-decoration: none;
+  border: 2px solid transparent;
+
+  padding: 5px;
+
+  cursor: pointer;
+
+  margin-bottom: 2em;
+}
+
+input:hover   {
+  border: 2px solid #d7458f;
+}
+
+textarea:hover  {
+  border: 2px solid #d7458f;
+}
+
+
+
+/* Navbar */
+
+.navbar {
+  overflow: hidden;
+  background-color: var(--yellow-color);
+
+  color: var(--body-background-color);
+
+  width: 100%;
+}
+
+.navbar a {
+  float: left;
+  font-size: 16px;
+ text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+
+  cursor: pointer;
+  font-weight: bold;
+
+}
+
+.navbar button  {
+  cursor: pointer;
+  font-weight: bold;
+
+  color: var(--body-background-color);
+
+}
+
+.dropdown {
+  float: left;
+  overflow: hidden;
+}
+
+.dropdown .dropdown-button {
+  font-size: 16px;
+  border: none;
+  outline: none;
+
+  padding: 14px 16px;
+  background-color: inherit;
+  font-family: inherit;
+  margin: 0;
+}
+
+.navbar a:hover, .dropdown:hover .dropdown-button {
+  background-color: var(--cyan-color);
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  float: none;
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+/* Friends css */
+
+
+/* View requests, tabs*/
+
+/* Style the tab */
+.tab {
+  overflow: hidden;
+  border: 1px solid #ccc;
+  background-color: #f1f1f1;
+}
+
+/* Style the buttons inside the tab */
+.tab button {
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+  font-size: 17px;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+  background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+  background-color: #ccc;
+}
+
+/* Style the tab content */
+.tabcontent {
+  display: none;
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  border-top: none;
+}
+
+/* View requests */
+
+.ViewFriendRequests  {
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.incoming-wrapper  {
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  max-width: 1200px;
+}
+
+.view-requests-button-tabs  {
+  display: flex;
+  justify-content: center;
+
+  color: white;
+
+  padding: 2em;
+}
+
+.view-requests-button-tabs div  {
+   background-color: red;
+}
+
+.view-requests-button-tabs div:hover  {
+  cursor: pointer !important;
+  opacity: 70%;
+}
+
+/* Incoming Requests table */
+
+.friend-requests-table   {
+  border-collapse: separate;
+  border-spacing: 0;
+  min-width: 350px;
+
+  width: 80%;
+
+  padding: 2em;
+  margin: 2em;
+}
+
+
+
+.friend-requests-table  tr th {
+  margin-bottom: 2em;
+  padding-bottom: 2em;;
+}
+
+
+
+.friend-requests-table  tr td {
+
+   padding: 5px;
+}
+
+.friend-requests-table  tr th:first-child  {
+
+}
+
+.content-row {
+  background-color: var(--bright-body-background);
+
+  border-radius: 2em !important;
+
+  padding: 2em !important;
+
+  font-size: 100%;
+ }
+
+thead  {
+  padding: 2em !important;
+  opacity: 70%;
+  font-size: 120%;
+}
+
+thead th  {
+  padding-left: 1em !important;
+  padding-right: 1em !important;
+}
+
+.content-row td  {
+  padding-left: 1em !important;
+  padding-right: 1em !important;
+
+  padding-top: 1.2em !important;
+  padding-bottom: 1.2em !important;
+
+}
+
+.status-cell  {
+  font-weight: bold;
+}
+
+ .green  {
+  color: lime;
+}
+
+  .red  {
+  color: red;
+}
+
+  .yellow  {
+  color: var(--yellow-color);
+}
+
+.friend-requests-table  tr th {
+   color: var(--white-font-color);
+  text-align: center;
+
+  margin-bottom: 2em;
+}
+
+.no-border {
+  border :none !important;
+  margin-left: 1em;
+
+  max-width: 50px !important;
+ }
+
+.accept-button  {
+  background-color: green;
+  color: var(--white-font-color);
+
+}
+
+.accepted  {
+opacity: 0.4;
+}
+
+.accepted:hover  {
+ opacity: 0.4;
+
+}
+
+.deny-button {
+  background-color: red;
+  color: var(--white-font-color);
+}
+
+.denied  {
+  opacity: 0.4;
+}
+
+.denied:hover  {
+  opacity: 0.4;
+}
+
+.cancel-button  {
+  background-color: red;
+  color: var(--white-font-color);
+}
+
+.canceled  {
+  opacity: 0.4;
+}
+
+.canceled:hover  {
+  opacity: 0.4;
+}
+
+
+.friend-requests-table thead  {
+  margin-bottom: 2em !important;
+ }
+
+/* rounded corners */
+
+/* top-left border-radius */
+table .content-row:first-child  td:first-child  {
+  border-top-left-radius: 1em;
+
+}
+
+/* top-right border-radius */
+table .content-row:first-child   td:last-child {
+  border-top-right-radius: 1em;
+}
+
+/* bottom-left border-radius */
+table .content-row:last-child td:first-child {
+  border-bottom-left-radius: 1em;
+}
+
+/* bottom-right border-radius */
+table .content-row:last-child td:last-child {
+  border-bottom-right-radius: 1em;
+}
+
