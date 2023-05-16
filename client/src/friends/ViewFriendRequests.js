@@ -8,25 +8,25 @@ import IncomingFriendRequests from "./IncomingFriendRequests";
 import SendFriendRequest from "./SendFriendRequest";
 import AuthForm from "../auth/AuthForm";
 import SendMessageForm from "../messages/SendMessageForm";
-import React from "react";
+import React, {useState} from "react";
 
 const ViewFriendRequests = () => {
+    const [showIncoming, setShowIncoming] = useState(true);
+    const [showOutgoing, setShowOutgoing] = useState(false);
+    const [showRequests, setShowRequests] = useState(true);
 
     return  (
         <div className="ViewFriendRequests">
             <h1>View Friend Requests</h1>
 
-            <div className="content">
-               <nav style={
-                   {
-                       color: 'white',
+            <div className="view-requests-button-tabs">
 
-                       backgroundColor: 'purple',
-
-                       padding: '2em'
-                   }
-               }>
-                   <NavLink to={ '/incoming-friend-requests'} style={{
+                   <div className="app-button" onClick={() => {
+                       setShowIncoming(true);
+                       setShowOutgoing(false);
+                       setShowRequests(true);
+                   }}
+                       style={{
                        textDecoration: 'none',
                        color: 'white',
                        fontWeight: 'bold',
@@ -34,13 +34,17 @@ const ViewFriendRequests = () => {
                        padding: '1em',
                        margin: '1em',
 
-                       backgroundColor: '#4d15b3',
+                       backgroundColor: showIncoming ? 'green' : '#4d15b3',
 
 
-                   }}>Incoming Friend Requests</NavLink>
-                   <NavLink to="/outgoing-friend-requests"
+                   }}>Incoming Friend Requests</div>
+                   <div className="app-button" onClick={() => {
+                       setShowIncoming(false);
+                       setShowOutgoing(true);
+                       setShowRequests(true);
+                   }}
 
-                style={{
+                           style={{
                     textDecoration: 'none',
                     color: 'white',
                     fontWeight: 'bold',
@@ -48,20 +52,16 @@ const ViewFriendRequests = () => {
                     padding: '1em',
                     margin: '1em',
 
-                    backgroundColor: '#4d15b3',
+                    backgroundColor: showOutgoing ? 'green' : '#4d15b3',
 
                 }}
 
-                   >Outgoing Friend Requests</NavLink>
-               </nav>
-
-       {/*         <Routes>
-                    <Route   path="/incoming-friend-requests" element={<IncomingFriendRequests/>}/>
-                    <Route   path="/outgoing-friend-requests" element={<OutgoingFriendRequests/>}/>
-
-
-                </Routes>*/}
+                   >Outgoing Friend Requests</div>
             </div>
+
+            {showRequests && showIncoming ? <IncomingFriendRequests/> : ""}
+            {showRequests && showOutgoing ? <OutgoingFriendRequests/> : ""}
+
         </div>
     );
 }

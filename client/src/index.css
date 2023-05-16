@@ -29,13 +29,15 @@ code {
 
 :root  {
   --black-font-color: #23263e;
-  --body-background-color: #4d15b3;
+  --body-background-color: #1d0844;
+  --bright-body-background: #4d15b3;
 
   --white-font-color: #f2f2f2;
 
   --cyan-color:  #60ffc9;
   --yellow-color: #fad717;
 }
+
 
 body  {
   background-color: var(--body-background-color);
@@ -57,6 +59,11 @@ body  {
   color:  var(--black-font-color);
 
   font-weight: bold;
+}
+
+.app-button:hover  {
+  cursor: pointer;
+  opacity: 70%;
 }
 
 .error-message  {
@@ -224,3 +231,204 @@ textarea:hover  {
   border: 1px solid #ccc;
   border-top: none;
 }
+
+/* View requests */
+
+.ViewFriendRequests  {
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.incoming-wrapper  {
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  max-width: 1200px;
+}
+
+.view-requests-button-tabs  {
+  display: flex;
+  justify-content: center;
+
+  color: white;
+
+  padding: 2em;
+}
+
+.view-requests-button-tabs div  {
+   background-color: red;
+}
+
+.view-requests-button-tabs div:hover  {
+  cursor: pointer !important;
+  opacity: 70%;
+}
+
+/* Incoming Requests table */
+
+.friend-requests-table   {
+  border-collapse: separate;
+  border-spacing: 0;
+  min-width: 350px;
+
+  width: 80%;
+
+  padding: 2em;
+  margin: 2em;
+}
+
+
+
+.friend-requests-table  tr th {
+  margin-bottom: 2em;
+  padding-bottom: 2em;;
+}
+
+
+
+.friend-requests-table  tr td {
+
+   padding: 5px;
+}
+
+.friend-requests-table  tr th:first-child  {
+
+}
+
+.content-row {
+  background-color: var(--bright-body-background);
+
+  border-radius: 2em !important;
+
+  padding: 2em !important;
+
+  font-size: 100%;
+ }
+
+thead  {
+  padding: 2em !important;
+  opacity: 70%;
+  font-size: 120%;
+}
+
+thead th  {
+  padding-left: 1em !important;
+  padding-right: 1em !important;
+}
+
+.content-row td  {
+  padding-left: 1em !important;
+  padding-right: 1em !important;
+
+  padding-top: 1.2em !important;
+  padding-bottom: 1.2em !important;
+
+}
+
+.status-cell  {
+  font-weight: bold;
+}
+
+ .green  {
+  color: lime;
+}
+
+  .red  {
+  color: red;
+}
+
+  .yellow  {
+  color: var(--yellow-color);
+}
+
+.friend-requests-table  tr th {
+   color: var(--white-font-color);
+  text-align: center;
+
+  margin-bottom: 2em;
+}
+
+.no-border {
+  border :none !important;
+  margin-left: 1em;
+
+  max-width: 50px !important;
+ }
+
+.accept-button  {
+  background-color: green;
+  color: var(--white-font-color);
+
+}
+
+.accepted  {
+opacity: 0.4;
+}
+
+.accepted:hover  {
+ opacity: 0.4;
+
+}
+
+.deny-button {
+  background-color: red;
+  color: var(--white-font-color);
+}
+
+.denied  {
+  opacity: 0.4;
+}
+
+.denied:hover  {
+  opacity: 0.4;
+}
+
+.cancel-button  {
+  background-color: red;
+  color: var(--white-font-color);
+}
+
+.canceled  {
+  opacity: 0.4;
+}
+
+.canceled:hover  {
+  opacity: 0.4;
+}
+
+
+.friend-requests-table thead  {
+  margin-bottom: 2em !important;
+ }
+
+/* rounded corners */
+
+/* top-left border-radius */
+table .content-row:first-child  td:first-child  {
+  border-top-left-radius: 1em;
+
+}
+
+/* top-right border-radius */
+table .content-row:first-child   td:last-child {
+  border-top-right-radius: 1em;
+}
+
+/* bottom-left border-radius */
+table .content-row:last-child td:first-child {
+  border-bottom-left-radius: 1em;
+}
+
+/* bottom-right border-radius */
+table .content-row:last-child td:last-child {
+  border-bottom-right-radius: 1em;
+}
+

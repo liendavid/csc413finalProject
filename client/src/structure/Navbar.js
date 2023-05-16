@@ -1,10 +1,8 @@
 import {Routes, Route, useNavigate, Link} from 'react-router-dom';
-import React from "react";
-import {isAuth, logout} from '../auth/AuthCheck';
+import React, {useEffect, useState} from "react";
+import {isAuth, logout, getLoggedInUsername} from '../auth/AuthCheck';
 
 const Navbar = () =>  {
-    const [isLoggedIn] = React.useState(false);
-
     const navigate = useNavigate();
 
     const goToPage = (page) =>  {
@@ -16,16 +14,29 @@ const Navbar = () =>  {
         window.location.reload(false);
     }
 
+    let  [username, setUsername] = useState();
+
+    useEffect(() => {
+         getLoggedInUsername().then((result) =>  {
+            setUsername(result);
+
+            console.log("found username = " + username);
+        });
+
+    }, []);
+
+
+
     return (
         <div className="navbar">
             <Link to="/">Home</Link>
 
-            <Link to="/auth-form">Authentication</Link>
+            <Link to="/auth-form">Authorization</Link>
 
 
-            {isLoggedIn ? <a href="#">Messages Feature</a> : ''}
+            {isAuth() ? <a href="/send-message-form">Messages Feature</a> : ''}
 
-            {!isLoggedIn ?
+            {isAuth() ?
                 <div className="dropdown">
                     <button className="dropdown-button">Friends Feature
                         <i className="fa fa-caret-down" aria-hidden="true"/>
@@ -38,7 +49,7 @@ const Navbar = () =>  {
                 </div>
                 : ''}
 
-            {isAuth() ? <a onClick={logoutAction}>Logout</a> : ""}
+            {isAuth() ? <a onClick={logoutAction}>Logout ({ username })</a> : ""}
         </div>
     );
 };

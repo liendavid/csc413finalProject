@@ -51,18 +51,20 @@ const AuthForm = ({setIsLoggedIn}) =>  {
         result.headers.forEach(function(value, name) {
             console.log(name + ": " + value);
         });
-        // alert(...result.headers);
-        alert(result.headers.get('set-cookie'));
+
+
+       // alert("hash header (how to get it??): " + result.headers.get('set-cookie') + " " + hash);
 
         if (result.status === 200) {
             // login worked
             await setIsLoggedIn(true);
             //getConversations();
 
-           auth(result.status);
+            let hash = await result.text();
+            auth(hash);
 
-            navigate('/send-message-form', {replace: true});
-
+             navigate('/send-message-form', {replace: true});
+            window.location.reload(false);
         } else {
             // login did not work
             setErrorMessage(`Username or password incorrect.`);
