@@ -56,7 +56,7 @@ const SendMessageForm = () =>  {
         };
         const httpSettings = {
             body: JSON.stringify(body),
-            method: 'POST',
+            method: 'GET',
             headers: {
                 auth: cookies.get('auth'), // utility to retrive cookie from cookies
             }
