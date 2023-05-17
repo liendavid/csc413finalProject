@@ -16,6 +16,7 @@ import IncomingFriendRequests from "./friends/IncomingFriendRequests";
 import OutgoingFriendRequests from "./friends/OutgoingFriendRequests";
 import  PrivateRoute  from "./structure/PrivateRoute";
 
+import SendChannel from "./channel/SendChannel";
 
 function App() {
   const [userName, setUserName] = React.useState('');
@@ -97,6 +98,8 @@ function App() {
 
               <Route   path="/incoming-friend-requests" element={PrivateRoute(<IncomingFriendRequests/>)}/>
               <Route   path="/outgoing-friend-requests" element={PrivateRoute(<OutgoingFriendRequests/>)}/>
+
+              <Route   path="/channels" element={PrivateRoute(<SendChannel/>)}/>
 
           </Routes>
 

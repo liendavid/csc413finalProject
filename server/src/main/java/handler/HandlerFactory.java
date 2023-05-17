@@ -44,6 +44,12 @@ public class HandlerFactory {
         return new GetUsernameByHash();
         
       // Friends Feature End
+      // case "/getChannelMessages":
+      // case "/sendChannelMessage":
+
+      // Group Feature
+
+      // Group Feature End
 
       default:
         return new FallbackHandler();

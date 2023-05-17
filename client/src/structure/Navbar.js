@@ -49,7 +49,10 @@ const Navbar = () =>  {
                 </div>
                 : ''}
 
+            {isAuth() ? <a href="/channels">Channels</a> : ''}
+
             {isAuth() ? <a onClick={logoutAction}>Logout ({ username })</a> : ""}
+
         </div>
     );
 };
