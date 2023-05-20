@@ -36,19 +36,3 @@
     transform: rotate(360deg);
   }
 }
-
-.status-indicator {
-  display: inline-block;
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  margin-left: 5px;
-}
-
-.online {
-  background-color: green;
-}
-
-.offline {
-  background-color: red;
-}

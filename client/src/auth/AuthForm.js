@@ -63,7 +63,7 @@ const AuthForm = ({setIsLoggedIn}) =>  {
             let hash = await result.text();
             auth(hash);
 
-             navigate('/send-message-form', {replace: true});
+            navigate('/send-message-form', {replace: true});
             window.location.reload(false);
         } else {
             // login did not work

@@ -1,12 +1,55 @@
 /* View outgoing friend requests */
 
 import Cookies from "universal-cookie";
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 
 const OutgoingFriendRequests = () =>  {
     const cookies = new Cookies();
 
     let [friendRequests, setFriendRequests] = useState();
+    const [message, setMessage] = React.useState('');
+    const [isError, setIsError] = React.useState(false);
+
+    async function cancelFriendRequest(request)  {
+        const url = 'http://localhost:3000/cancelFriendRequest';
+
+        let toUsername = request.toUsername;
+        const body = {
+            toUsername: toUsername,
+        };
+        const httpSettings = {
+            body: JSON.stringify(body),
+            method: 'POST',
+
+            headers: {
+                auth: cookies.get('auth'), // retrieve cookie from cookies
+            }
+        };
+
+        const result = await fetch(url, httpSettings);
+        const apiRes = await result.json();
+        if (result.status === 200)  {
+            // friend request was canceled
+            setIsError(false);
+        } else  {
+            // request resulted in an error
+            setIsError(true);
+        }
+
+        let message = apiRes.message;
+        setMessage(message);
+
+        if (apiRes.status)  {
+            setIsError(false);
+
+            request.isCanceled = true;
+        } else  {
+            setIsError(true);
+        }
+
+        request.isLoading = false;
+        window.location.reload(false);
+    }
 
     async function getOutgoingFriendRequests()  {
         //  alert("getting");
@@ -51,6 +94,8 @@ const OutgoingFriendRequests = () =>  {
         <div className="incoming-wrapper">
             <h1>Outgoing Friend Requests</h1>
 
+            <div className={isError ? 'error' : 'success'}>{message}</div>
+
             {friendRequests !== undefined ?
                 <table className="friend-requests-table">
                     <thead>
@@ -69,7 +114,8 @@ const OutgoingFriendRequests = () =>  {
                             <td className={"status-cell " + (request.isAccepted ? 'green' :
                                 request.isDenied ? 'red' : 'yellow')}>{request.isAccepted ? "Accepted" : request.isDenied ? "Denied" : "Pending"}</td>
                             <td className="no-border  ">
-                                <div className={"app-button cancel-button " +
+                                <div onClick={() => {cancelFriendRequest(request)}}
+                                    className={"app-button cancel-button " +
                                 (request.isCanceled ? 'canceled' : '')}>Cancel</div>
                             </td>
 
