@@ -16,8 +16,7 @@ public class HandlerFactory {
         return new GetConversationHandler();
       case "/createMessage":
         return new CreateMessageHandler();
-      case "/statusCheck":
-        return new StatusHandler();
+        
       // Friends Feature Start
       
       case "/getFriends":
@@ -44,7 +43,7 @@ public class HandlerFactory {
         return new GetUsernameByHash();
         
       // Friends Feature End
-
+        
       default:
         return new FallbackHandler();
     }

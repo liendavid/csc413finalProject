@@ -36,12 +36,20 @@ public class SendFriendRequestHandler implements BaseHandler {
             return new HttpResponseBuilder().setStatus("200 OK").setBody(res);
         }
         
+        // check if it's a self request
+        if (friendRequestDto.getFromUsername().equals(friendRequestDto.getToUsername()))  {
+            var res = new RestApiAppResponse<>(false, null,
+                    "Can't send a Friend Request to yourself!");
+            return new HttpResponseBuilder().setStatus("200 OK").setBody(res);
+        }
+        
         // check if an outgoing friend requests already exists
         FriendRequestDao friendRequestDao = FriendRequestDao.getInstance();
 
         Document checkExistingDocument = new Document();
         checkExistingDocument.put("fromUsername", friendRequestDto.getFromUsername());
         checkExistingDocument.put("toUsername", friendRequestDto.getToUsername());
+        
         
         // this user has already sent the friend request to the same user
         
@@ -66,7 +74,8 @@ public class SendFriendRequestHandler implements BaseHandler {
         // save the friend request in a database
         friendRequestDao.put(friendRequestDto);
 
-        var res = new RestApiAppResponse<>(true, List.of(friendRequestDto), null);
+        var res = new RestApiAppResponse<>(true, List.of(friendRequestDto), "Successfully sent the Friend Request to " +
+                friendRequestDto.getToUsername() + "!");
         return new HttpResponseBuilder().setStatus("200 OK").setBody(res);
     }
     

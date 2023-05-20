@@ -12,7 +12,7 @@ import java.net.Socket;
 import java.util.Calendar;
 import request.CustomParser;
 import request.ParsedRequest;
-import response.CustomHttpResponse; 
+import response.CustomHttpResponse;
 import response.HttpResponseBuilder;
 
 public class Server {

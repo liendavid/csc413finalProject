@@ -18,7 +18,8 @@ public class FriendshipDto extends BaseDto  {
         super(uniqueId);
         timestamp = Instant.now().toEpochMilli();
     }
-
+    
+    
     @Override
     public Document toDocument() {
         return new Document()
