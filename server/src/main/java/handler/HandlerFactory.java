@@ -16,6 +16,10 @@ public class HandlerFactory {
         return new GetConversationHandler();
       case "/createMessage":
         return new CreateMessageHandler();
+
+        // Status Feature Start
+      case "/statusCheck":
+        return new StatusHandler();
         
       // Friends Feature Start
       
