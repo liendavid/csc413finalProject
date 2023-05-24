@@ -7,6 +7,7 @@ import org.bson.Document;
 import request.ParsedRequest;
 import response.HttpResponseBuilder;
 import response.RestApiAppResponse;
+import profilepicture.DefaultProfilePicture;
 
 public class CreateUserHandler implements BaseHandler{
 
@@ -21,6 +22,7 @@ public class CreateUserHandler implements BaseHandler{
       res = new RestApiAppResponse<>(false, null, "Username already taken");
     }else{
       userDto.setPassword(DigestUtils.sha256Hex(userDto.getPassword()));
+      userDto.setProfilePicture(DefaultProfilePicture.getRandomColor());
       userDao.put(userDto);
       res = new RestApiAppResponse<>(true, null, "User Created");
     }

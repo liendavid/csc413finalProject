@@ -1,6 +1,8 @@
 package dao;
 
 import com.mongodb.client.MongoCollection;
+import com.mongodb.client.model.Filters;
+import com.mongodb.client.model.Updates;
 import dto.UserDto;
 import java.util.ArrayList;
 import java.util.List;
@@ -26,6 +28,12 @@ public class UserDao extends BaseDao<UserDto> {
   public static UserDao getInstance(MongoCollection<Document> collection){
     instance = new UserDao(collection);
     return instance;
+  }
+
+  public void updateProfilePicture(UserDto messageDto) {
+    System.out.println("username in cpfph: " + messageDto.getUserName());
+    System.out.println("pfp in cpfph: " + messageDto.getProfilePicture());
+    collection.updateOne(Filters.eq("userName", messageDto.getUserName()), Updates.set("profilePicture", messageDto.getProfilePicture()));
   }
 
   @Override
