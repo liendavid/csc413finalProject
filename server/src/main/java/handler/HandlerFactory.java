@@ -47,6 +47,13 @@ public class HandlerFactory {
         return new GetUsernameByHash();
         
       // Friends Feature End
+      case "/getChannelMessages":
+        return new GetChannelMessages();
+      case "/sendChannelMessage":
+        return new SendChannelMessage();
+      // Group Feature
+
+      // Group Feature End
 
       case "/getProfilePicture":
         return new GetProfilePictureHandler();
