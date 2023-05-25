@@ -22,7 +22,6 @@ import response.RestApiAppResponse;
     }
     if (userDao.query(query) != null) {
       userDto.setProfilePicture(userDto.getProfilePicture());
-      System.out.println(userDto.getProfilePicture());
       userDao.updateProfilePicture(userDto);
       var res = new RestApiAppResponse<>(false, null,"Updating Profile Picture");
       return new HttpResponseBuilder().setStatus("200 OK").setBody(res);
