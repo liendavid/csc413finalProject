@@ -79,7 +79,6 @@ const Navbar = () =>  {
         const apiRes = await result.json();
         if (apiRes.status) {
           // worked
-          alert("return setProfilePicture")
           setProfilePicture(apiRes.data[0].profilePicture); // java side should return profile picture 
         } else {
         }
@@ -92,7 +91,6 @@ const Navbar = () =>  {
           uploadBytes(ref(storage, imgPath),file).then(() => {
             getDownloadURL(ref(storage, imgPath)).then((url) => {
               setProfilePicture(url);
-              displayProfilePicture();
               toMongo(url);
             });
           })
@@ -115,11 +113,6 @@ const Navbar = () =>  {
         const result = await fetch('/setProfilePicture', httpSettings);
         const apiRes = await result.json();
         //console.log(apiRes);
-        if (apiRes.status) {
-          // worked
-        } else {
-          
-        }
         displayProfilePicture();
       };
 
@@ -159,9 +152,11 @@ const Navbar = () =>  {
                     </div>
                 </div>
                 : null}
+
             {/* <div className={`status-indicator ${isUserOnline ? 'online' : 'offline'}`}>
                 {isUserOnline ? 'Online' : 'Offline'}
             </div> */}
+            {isAuth() ?
                 <div class ="wrapper" style={{float: 'right'}}>    
                     <div class="image-button">
                         <img class="image" style={{border: 'solid white', borderWidth: 2, borderRadius: '50%', width: 60, height: 60, objectFit: 'cover'}} src={profilePicture}/>
@@ -171,6 +166,7 @@ const Navbar = () =>  {
                     </div>
                     <input type="file" onChange={onChangeProfilePicture} />
                 </div>
+            :null}
         
         </div>
     );

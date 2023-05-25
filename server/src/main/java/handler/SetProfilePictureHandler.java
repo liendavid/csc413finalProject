@@ -13,7 +13,6 @@ import response.RestApiAppResponse;
  
   @Override
   public HttpResponseBuilder handleRequest(ParsedRequest request) {
-    System.out.println("in set profile handler");
     UserDto userDto = GsonTool.gson.fromJson(request.getBody(), dto.UserDto.class);
     UserDao userDao = UserDao.getInstance();
     var query = new Document("userName", userDto.getUserName());
@@ -23,7 +22,6 @@ import response.RestApiAppResponse;
     }
     if (userDao.query(query) != null) {
       userDto.setProfilePicture(userDto.getProfilePicture());
-      System.out.println(">>>>>>>get profile picture:<<<<< " + userDto.getProfilePicture());
       userDao.updateProfilePicture(userDto);
       var res = new RestApiAppResponse<>(false, null,"Updating Profile Picture");
       return new HttpResponseBuilder().setStatus("200 OK").setBody(res);
