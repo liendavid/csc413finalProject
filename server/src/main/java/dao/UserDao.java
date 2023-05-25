@@ -31,8 +31,6 @@ public class UserDao extends BaseDao<UserDto> {
   }
 
   public void updateProfilePicture(UserDto messageDto) {
-    System.out.println("username in cpfph: " + messageDto.getUserName());
-    System.out.println("pfp in cpfph: " + messageDto.getProfilePicture());
     collection.updateOne(Filters.eq("userName", messageDto.getUserName()), Updates.set("profilePicture", messageDto.getProfilePicture()));
   }
 
