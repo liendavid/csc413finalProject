@@ -45,8 +45,9 @@ const Navbar = () =>  {
             setIsUserOnline(false);
           }
         };
-    
-        checkUserOnlineStatus();
+        // this calls the status function
+        checkUserOnlineStatus(); 
+        // this calls the status function every 5 seconds
         const intervalId = setInterval(checkUserOnlineStatus, 5000);
     
         return () => {
@@ -92,9 +93,6 @@ const Navbar = () =>  {
                     </div>
                 </div>
                 : null}
-            {/* <div className={`status-indicator ${isUserOnline ? 'online' : 'offline'}`}>
-                {isUserOnline ? 'Online' : 'Offline'}
-            </div> */}
         </div>
     );
 };
