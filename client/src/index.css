@@ -303,15 +303,6 @@ textarea:hover  {
 
 }
 
-.content-row {
-  background-color: var(--bright-body-background);
-
-  border-radius: 2em !important;
-
-  padding: 2em !important;
-
-  font-size: 100%;
- }
 
 thead  {
   padding: 2em !important;
@@ -409,6 +400,8 @@ opacity: 0.4;
   margin-bottom: 2em !important;
  }
 
+
+
 /* rounded corners */
 
 /* top-left border-radius */
@@ -430,5 +423,39 @@ table .content-row:last-child td:first-child {
 /* bottom-right border-radius */
 table .content-row:last-child td:last-child {
   border-bottom-right-radius: 1em;
+}
+
+.content-row   {
+  background-color: var(--bright-body-background);
+
+  border-radius: 2em !important;
+
+  padding: 2em !important;
+
+  font-size: 100%;
+
+
+}
+
+/* Send Friend Request Form */
+
+.send-friend-request-form  {
+  display: flex;
+  flex-direction: column;
+
+}
+
+.send-request-message  {
+  margin-top: 1em !important;
+}
+
+.error  {
+  color: red;
+  font-weight: bold;
+}
+
+.success  {
+  color: lime;
+  font-weight: bold;
 }
 

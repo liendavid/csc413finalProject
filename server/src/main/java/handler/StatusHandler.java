@@ -1,35 +1,40 @@
 package handler;
 
-import dao.ConversationDao;
-import dao.MessageDao;
-import dao.UserDao;
-import dto.ConversationDto;
-import dto.MessageDto;
+import dao.StatusDao;
+import dto.StatusDto;
+import dto.UserDto;
 import handler.AuthFilter.AuthResult;
-import java.util.Comparator;
-import java.util.List;
-import java.util.stream.Collectors;
-import org.bson.Document;
 import request.ParsedRequest;
-import response.CustomHttpResponse;
 import response.HttpResponseBuilder;
 import response.RestApiAppResponse;
 
-public class StatusHandler implements BaseHandler{
+public class StatusHandler implements BaseHandler {
 
     @Override
     public HttpResponseBuilder handleRequest(ParsedRequest request) {
         var authResult = AuthFilter.doFilter(request);
-        String message = "";
-        if (!authResult.isLoggedIn){
+        if (!authResult.isLoggedIn) {
             return new HttpResponseBuilder().setStatus(StatusCodes.UNAUTHORIZED)
                     .setBody("User not online");
-        } else {
-            message = "User" + authResult.userName + " is online";
+        }
+        StatusDto userDto = GsonTool.gson.fromJson(request.getBody(), dto.StatusDto.class);
+        userDto.getUserName();
+        String status = userDto.getStatus();
+
+        // error handling
+        if (status == null || status.isEmpty()) {
+            return new HttpResponseBuilder().setStatus(StatusCodes.BAD_REQUEST)
+                    .setBody("Status cannot be empty");
         }
 
-        var res = new RestApiAppResponse<>(true, null, message);
-        return new HttpResponseBuilder().setStatus("200 OK").setBody(res);
+        // update the user's status in the database
+        var statusDto = new StatusDto();
+        statusDto.setUserName(authResult.userName);
+        statusDto.setStatus(status);
+        StatusDao.getInstance().put(statusDto);
 
+        var message = "User " + authResult.userName + " status updated to " + status;
+        var res = new RestApiAppResponse<>(true, null, message);
+        return new HttpResponseBuilder().setStatus(StatusCodes.OK).setBody(res);
     }
 }

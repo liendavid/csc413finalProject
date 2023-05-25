@@ -1,10 +1,14 @@
 import React from "react";
 import {useNavigate} from "react-router";
 import {auth, logout} from './AuthCheck';
+import Cookies from 'universal-cookie';
 
 const AuthForm = ({setIsLoggedIn}) =>  {
+    const cookies = new Cookies();
+
     const [userName, setUserName] = React.useState('');
     const [password, setPassword] = React.useState('');
+    const [profilePicture, setProfilePicture] = React.useState('');
     const [isLoading, setIsLoading] = React.useState(false);
     const [errorMessage, setErrorMessage] = React.useState('');
 
@@ -41,6 +45,7 @@ const AuthForm = ({setIsLoggedIn}) =>  {
         const body = {
             userName: userName,
             password: password,
+            profilePicture: profilePicture,
         };
         const httpSettings = {
             body: JSON.stringify(body),
@@ -63,7 +68,7 @@ const AuthForm = ({setIsLoggedIn}) =>  {
             let hash = await result.text();
             auth(hash);
 
-             navigate('/send-message-form', {replace: true});
+            navigate('/send-message-form', {replace: true});
             window.location.reload(false);
         } else {
             // login did not work

@@ -16,8 +16,11 @@ public class HandlerFactory {
         return new GetConversationHandler();
       case "/createMessage":
         return new CreateMessageHandler();
+
+        // Status Feature Start
       case "/statusCheck":
         return new StatusHandler();
+        
       // Friends Feature Start
       
       case "/getFriends":
@@ -52,6 +55,11 @@ public class HandlerFactory {
 
       // Group Feature End
 
+      case "/getProfilePicture":
+        return new GetProfilePictureHandler();
+      case "/setProfilePicture":
+        return new SetProfilePictureHandler();
+        
       default:
         return new FallbackHandler();
     }
