@@ -152,10 +152,7 @@ const Navbar = () =>  {
                     </div>
                 </div>
                 : null}
-
-            {/* <div className={`status-indicator ${isUserOnline ? 'online' : 'offline'}`}>
-                {isUserOnline ? 'Online' : 'Offline'}
-            </div> */}
+                
             {isAuth() ?
                 <div class ="wrapper" style={{float: 'right'}}>    
                     <div class="image-button">
