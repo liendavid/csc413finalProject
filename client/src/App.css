@@ -52,3 +52,11 @@
 .offline {
   background-color: grey;
 }
+
+.away {
+  background-color: yellow;
+}
+
+.dnd {
+  background-color: red;
+}
