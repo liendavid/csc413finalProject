@@ -43,6 +43,11 @@ public class HandlerFactory {
         return new GetUsernameByHash();
         
       // Friends Feature End
+
+      case "/getProfilePicture":
+        return new GetProfilePictureHandler();
+      case "/setProfilePicture":
+        return new SetProfilePictureHandler();
         
       default:
         return new FallbackHandler();
