@@ -124,6 +124,8 @@ const Navbar = () =>  {
 
             {isAuth() ? <a href="/send-message-form">Messages Feature</a> : ''}
 
+            {isAuth() ? <a href="/channels">Channels</a> : ''}
+
             {isAuth() ?
                 <div className="dropdown">
                     <button className="dropdown-button">Friends Feature
