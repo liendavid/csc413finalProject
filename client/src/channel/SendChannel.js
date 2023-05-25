@@ -88,7 +88,7 @@ const SendChannel = () =>{
             </div>
 
             <div>{errorMessage}</div>
-
+            
             <div>{channelConvos.map(convo => <div>{convo.fromId} : {convo.message}</div>)}</div>
 
         </div>

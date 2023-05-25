@@ -23,6 +23,8 @@ public class SendChannelMessage implements BaseHandler{
         if(!authResult.isLoggedIn){
             return new HttpResponseBuilder().setStatus(StatusCodes.UNAUTHORIZED);
         }
+        System.out.println(">>> CH UN <<<" + authResult.userName);
+        channelDto.setFromId(authResult.userName);
 
         // Add channel message to DB
         channelDao.put(channelDto);
