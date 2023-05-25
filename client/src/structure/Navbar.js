@@ -18,6 +18,7 @@ const Navbar = () =>  {
 
     let  [username, setUsername] = useState();
     let  [isUserOnline, setIsUserOnline] = useState(true);
+    let  [status, setStatus] = useState("online");
 
     useEffect(() => {
          getLoggedInUsername().then((result) =>  {
@@ -31,14 +32,16 @@ const Navbar = () =>  {
     useEffect(() => {
         const checkUserOnlineStatus = async () => {
           try {
+            let url = 'http://localhost:3000/statusCheck';
             const body = {
                 userName: username,
+                status: status,
             };
             const httpSettings = {
                 body: JSON.stringify(body),
-                method: 'GET'
+                method: 'POST'
             };
-            const response = await fetch('/statusCheck', httpSettings);
+            const response = await fetch(url, httpSettings);
             const data = await response.json();
             setIsUserOnline(data.status);
           } catch (error) {
@@ -47,13 +50,10 @@ const Navbar = () =>  {
         };
         // this calls the status function
         checkUserOnlineStatus(); 
-        // this calls the status function every 5 seconds
-        const intervalId = setInterval(checkUserOnlineStatus, 5000);
     
         return () => {
-          clearInterval(intervalId);
         };
-      }, []);
+      }, [status]);
 
 
     return (
@@ -83,13 +83,13 @@ const Navbar = () =>  {
             {isAuth() ?
                 <div className="dropdown">
                     <button className="dropdown-button">
-                    <span className={`status-indicator ${isUserOnline ? 'online' : 'offline'}`} />
+                    <span className={`status-indicator ${isUserOnline ? 'online' : 'offline'} ${isUserOnline ? (isUserOnline === 'away' ? 'away' : 'dnd') : ''}`} />
                     <i className="fa fa-caret-down" aria-hidden="true"/>
                     </button>
                     <div className="dropdown-content">
-                        <a href="#" onClick={() => {goToPage("/friend-list")}}>Online</a>
-                        <a href="#" onClick={() => {goToPage("/send-friend-request")}}>Away</a>
-                        <a href="#" onClick={() => {goToPage("/view-friend-requests")}}>Do not Disturb</a>
+                        <a href="#" onClick={() => { setStatus("online") }}>Online</a>
+                        <a href="#" onClick={() => { setStatus("away") }}>Away</a>
+                        <a href="#" onClick={() => { setStatus("dnd") }}>Do not Disturb</a>
                     </div>
                 </div>
                 : null}

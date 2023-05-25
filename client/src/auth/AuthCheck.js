@@ -26,8 +26,9 @@ export async function getLoggedInUsername()  {
         };
 
         // TODO: for some reason adds %0A after the hash - it's accounted for in the backend code
+        const hash = localStorage.getItem("hash").trim();
         const result = await fetch('/getUsernameByHash' + '?' +
-            new URLSearchParams( {"hash": localStorage.getItem("hash")}), httpSettings);
+            new URLSearchParams( {"hash": hash }), httpSettings);
 
 
         const apiRes = await result.json();
