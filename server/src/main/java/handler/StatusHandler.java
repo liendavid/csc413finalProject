@@ -21,6 +21,8 @@ public class StatusHandler implements BaseHandler{
     public HttpResponseBuilder handleRequest(ParsedRequest request) {
         var authResult = AuthFilter.doFilter(request);
         String message = "";
+        System.out.println("==========");
+        System.out.println(request.getBody());
         if (!authResult.isLoggedIn){
             return new HttpResponseBuilder().setStatus(StatusCodes.UNAUTHORIZED)
                     .setBody("User not online");

@@ -27,6 +27,8 @@ const Navbar = () =>  {
         window.location.reload(false);
     }
 
+    //maybe allow user to set the status as a server call
+
     let  [username, setUsername] = useState();
     let  [isUserOnline, setIsUserOnline] = useState(true);
 
@@ -47,7 +49,7 @@ const Navbar = () =>  {
             };
             const httpSettings = {
                 body: JSON.stringify(body),
-                method: 'POST'
+                method: 'GET'
             };
             const response = await fetch('/statusCheck', httpSettings);
             const data = await response.json();
@@ -56,8 +58,9 @@ const Navbar = () =>  {
             setIsUserOnline(false);
           }
         };
-    
-        checkUserOnlineStatus();
+        // this calls the status function
+        checkUserOnlineStatus(); 
+        // this calls the status function every 5 seconds
         const intervalId = setInterval(checkUserOnlineStatus, 5000);
     
         return () => {
@@ -152,7 +155,7 @@ const Navbar = () =>  {
                     <div className="dropdown-content">
                         <a href="#" onClick={() => {goToPage("/friend-list")}}>Online</a>
                         <a href="#" onClick={() => {goToPage("/send-friend-request")}}>Away</a>
-                        <a href="#" onClick={() => {goToPage("/view-friend-requests")}}>Invisible</a>
+                        <a href="#" onClick={() => {goToPage("/view-friend-requests")}}>Do not Disturb</a>
                     </div>
                 </div>
                 : null}
